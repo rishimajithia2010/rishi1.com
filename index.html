@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElectroPulse | Premium Electronics Showroom & Store</title>
+  <meta name="description" content="Shop latest OLED TVs, 5G Smartphones, Double Door Fridges, Gaming Laptops, and Smart Accessories at ElectroPulse Indian Electronics Store. Best Prices, Instant EMI & Express Delivery.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: 'var(--accent-color, #2563eb)',
+            accentHover: 'var(--accent-hover, #1d4ed8)',
+          },
+          borderRadius: {
+            'custom': 'var(--border-radius, 0.75rem)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent-color: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border-radius: 0.75rem;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Glassmorphism utility */
+    .glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .dark .glass {
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    .animate-float {
+      animation: float 5s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: float 6s ease-in-out 2s infinite;
+    }
+
+    /* Pulse Glow */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(37, 99, 235, 0.6); }
+    }
+    .glow-effect {
+      animation: pulseGlow 3s infinite;
+    }
+
+    /* Hide scrollbars for clean horizontally scrollable lists */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- ================= ANNOUNCEMENT BAR ================= -->
+  <div id="announcement-bar" class="bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-between items-center shadow-inner">
+    <div class="flex-1 text-center">
+      <span>🎁 Play. Win. Save! Complete today's Tech Challenge or Spin the Wheel to unlock up to 30% OFF!</span>
+      <button onclick="navigateTo('rewards')" class="ml-2 underline hover:text-amber-300 font-semibold transition">Play Now</button>
+    </div>
+    <button onclick="document.getElementById('announcement-bar').remove()" class="text-white/80 hover:text-white ml-2">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+  </div>
+
+  <!-- ================= STICKY HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+        
+        <!-- Logo -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+            <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
+          </div>
+          <div>
+            <span class="font-heading font-extrabold text-2xl tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">ElectroPulse</span>
+            <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest -mt-1">Digital Showroom</span>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation & Mega Menu Trigger -->
+        <nav class="hidden lg:flex items-center gap-7 font-medium text-sm text-slate-700 dark:text-slate-200">
+          <button onclick="navigateTo('home')" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</button>
+          
+          <!-- Categories Dropdown Trigger -->
+          <div class="relative group py-6">
+            <button onclick="navigateTo('shop')" class="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition">
+              Categories <i data-lucide="chevron-down" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-200"></i>
+            </button>
+            
+            <!-- Mega Menu -->
+            <div class="absolute top-full left-0 w-[600px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 hidden group-hover:grid grid-cols-3 gap-4 z-50">
+              <a href="#" onclick="navigateTo('shop', 'tvs'); return false;" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center"><i data-lucide="tv" class="w-5 h-5"></i></div>
+                <div><div class="font-semibold text-xs">Smart TVs & Audio</div><div class="text-[11px] text-slate-400">OLED, QLED, 4K</div></div>
+              </a>
+              <a href="#" onclick="navigateTo('shop', 'mobiles'); return false;" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center"><i data-lucide="smartphone" class="w-5 h-5"></i></div>
+                <div><div class="font-semibold text-xs">Mobile Phones</div><div class="text-[11px] text-slate-400">5G Flagships, Foldables</div></div>
+              </a>
+              <a href="#" onclick="navigateTo('shop', 'laptops'); return false;" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/40 text-purple-600 flex items-center justify-center"><i data-lucide="laptop" class="w-5 h-5"></i></div>
+                <div><div class="font-semibold text-xs">Laptops & PCs</div><div class="text-[11px] text-slate-400">Gaming, Ultrabooks</div></div>
+              </a>
+              <a href="#" onclick="navigateTo('shop', 'refrigerators'); return false;" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 flex items-center justify-center"><i data-lucide="refrigerator" class="w-5 h-5"></i></div>
+                <div><div class="font-semibold text-xs">Refrigerators</div><div class="text-[11px] text-slate-400">Double Door, Smart</div></div>
+              </a>
+              <a href="#" onclick="navigateTo('shop', 'ac'); return false;" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <div class="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-900/40 text-teal-600 flex items-center justify-center"><i data-lucide="wind" class="w-5 h-5"></i></div>
+                <div><div class="font-semibold text-xs">Air Conditioners</div><div class="text-[11px] text-slate-400">Inverter ACs, Split</div></div>
+              </a>
+              <a href="#" onclick="navigateTo('shop', 'audio'); return false;" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <div class="w-10 h-10 rounded-lg bg-rose-100 dark:bg-rose-900/40 text-rose-600 flex items-center justify-center"><i data-lucide="headphones" class="w-5 h-5"></i></div>
+                <div><div class="font-semibold text-xs">Audio & Speakers</div><div class="text-[11px] text-slate-400">Soundbars, ANC</div></div>
+              </a>
+            </div>
+          </div>
+
+          <button onclick="navigateTo('shop')" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Shop</button>
+          <button onclick="navigateTo('offers')" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1">
+            Offers <span class="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">HOT</span>
+          </button>
+          <button onclick="navigateTo('rewards')" class="hover:text-blue-600 dark:hover:text-blue-400 transition text-indigo-600 dark:text-indigo-400 font-semibold flex items-center gap-1">
+            <i data-lucide="gamepad-2" class="w-4 h-4"></i> Games & Rewards
+          </button>
+          <button onclick="navigateTo('compare')" class="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1">
+            Compare <span id="compare-badge-count" class="bg-slate-200 dark:bg-slate-700 text-xs px-1.5 py-0.5 rounded-full font-semibold">0</span>
+          </button>
+        </nav>
+
+        <!-- Search Bar (Desktop) -->
+        <div class="hidden md:flex flex-1 max-w-md relative">
+          <input type="text" id="desktop-search-input" placeholder="Search 4K TVs, iPhones, ACs, Laptops..." 
+                 oninput="handleSearch(this.value)"
+                 class="w-full bg-slate-100 dark:bg-slate-800 text-sm rounded-full py-2.5 pl-10 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-transparent transition">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+          <button onclick="openSearchModal()" class="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">⌘K</button>
+        </div>
+
+        <!-- Action Icons -->
+        <div class="flex items-center gap-3">
+          <!-- Search Mobile Trigger -->
+          <button onclick="openSearchModal()" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+
+          <!-- Wishlist -->
+          <button onclick="navigateTo('wishlist')" class="relative p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+            <span id="wishlist-badge" class="hidden absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+          </button>
+
+          <!-- Cart -->
+          <button onclick="navigateTo('cart')" class="relative p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900 transition flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span class="hidden sm:inline text-xs font-semibold">Cart</span>
+            <span id="cart-count" class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-sm">0</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3">
+      <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-slate-700 dark:text-slate-200">Home</button>
+      <button onclick="navigateTo('shop'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-slate-700 dark:text-slate-200">Shop All Products</button>
+      <button onclick="navigateTo('offers'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-red-500 font-semibold">Offers & Flash Deals</button>
+      <button onclick="navigateTo('rewards'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-indigo-600 font-semibold">Games & Discount Rewards</button>
+      <button onclick="navigateTo('compare'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-slate-700 dark:text-slate-200">Compare Products</button>
+      <button onclick="navigateTo('tracking'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-slate-700 dark:text-slate-200">Track Order</button>
+      <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-slate-700 dark:text-slate-200">About Store</button>
+      <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-slate-700 dark:text-slate-200">Contact Us</button>
+    </div>
+  </header>
+
+  <!-- ================= DYNAMIC PAGE CONTENT CONTAINER ================= -->
+  <main id="app-content" class="flex-grow">
+    <!-- View content loaded via JS router -->
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 pt-16 pb-12 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+              <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
+            </div>
+            <span class="font-heading font-extrabold text-2xl text-white tracking-tight">ElectroPulse</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+            India's flagship digital electronics retail experience. Premium 4K Smart TVs, 5G Mobiles, Energy-Efficient Home Appliances, and Next-Gen Laptops with genuine brand warranties and zero-cost EMI.
+          </p>
+          <div class="flex items-center gap-4 pt-2">
+            <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+        <!-- Links Col 1 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider uppercase mb-4">Shop Categories</h4>
+          <ul class="space-y-2.5 text-sm text-slate-400">
+            <li><a href="#" onclick="navigateTo('shop', 'tvs'); return false;" class="hover:text-blue-400 transition">Smart 4K OLED TVs</a></li>
+            <li><a href="#" onclick="navigateTo('shop', 'mobiles'); return false;" class="hover:text-blue-400 transition">5G Smartphones</a></li>
+            <li><a href="#" onclick="navigateTo('shop', 'laptops'); return false;" class="hover:text-blue-400 transition">Gaming & Slim Laptops</a></li>
+            <li><a href="#" onclick="navigateTo('shop', 'refrigerators'); return false;" class="hover:text-blue-400 transition">Double Door Refrigerators</a></li>
+            <li><a href="#" onclick="navigateTo('shop', 'ac'); return false;" class="hover:text-blue-400 transition">Inverter Air Conditioners</a></li>
+            <li><a href="#" onclick="navigateTo('shop', 'audio'); return false;" class="hover:text-blue-400 transition">Soundbars & Wireless Audio</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 2 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider uppercase mb-4">Customer Care</h4>
+          <ul class="space-y-2.5 text-sm text-slate-400">
+            <li><a href="#" onclick="navigateTo('tracking'); return false;" class="hover:text-blue-400 transition">Track Your Order</a></li>
+            <li><a href="#" onclick="navigateTo('warranty'); return false;" class="hover:text-blue-400 transition">Warranty & Installation</a></li>
+            <li><a href="#" onclick="navigateTo('warranty'); return false;" class="hover:text-blue-400 transition">Returns & Replacements</a></li>
+            <li><a href="#" onclick="navigateTo('contact'); return false;" class="hover:text-blue-400 transition">Store Locator & Help</a></li>
+            <li><a href="#" onclick="navigateTo('rewards'); return false;" class="hover:text-blue-400 transition">Rewards & Coupons</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter & Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider uppercase mb-4">Stay Connected</h4>
+          <p class="text-slate-400 text-xs mb-3">Subscribe for exclusive flash deals, price drop alerts & tech news.</p>
+          <div class="space-y-2">
+            <input type="email" placeholder="Enter your email" class="w-full bg-slate-800 border border-slate-700 text-sm text-white px-3.5 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button onclick="showToast('Subscribed! Thank you for joining ElectroPulse.')" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs py-2.5 rounded-xl transition">Subscribe Now</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+        <div>&copy; 2026 ElectroPulse Electronics Retail India Pvt. Ltd. All rights reserved.</div>
+        <div class="flex items-center gap-6">
+          <a href="#" onclick="navigateTo('warranty'); return false;" class="hover:underline">Privacy Policy</a>
+          <a href="#" onclick="navigateTo('warranty'); return false;" class="hover:underline">Terms of Service</a>
+          <a href="#" onclick="navigateTo('warranty'); return false;" class="hover:underline">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MOBILE STICKY BOTTOM BAR ================= -->
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 flex justify-around items-center py-2 px-3 shadow-lg">
+    <button onclick="navigateTo('home')" class="flex flex-col items-center text-slate-600 dark:text-slate-400 hover:text-blue-600">
+      <i data-lucide="home" class="w-5 h-5"></i>
+      <span class="text-[10px] font-medium mt-0.5">Home</span>
+    </button>
+    <button onclick="navigateTo('shop')" class="flex flex-col items-center text-slate-600 dark:text-slate-400 hover:text-blue-600">
+      <i data-lucide="grid" class="w-5 h-5"></i>
+      <span class="text-[10px] font-medium mt-0.5">Shop</span>
+    </button>
+    <button onclick="navigateTo('rewards')" class="flex flex-col items-center text-indigo-600 dark:text-indigo-400">
+      <i data-lucide="gift" class="w-5 h-5"></i>
+      <span class="text-[10px] font-medium mt-0.5">Rewards</span>
+    </button>
+    <button onclick="navigateTo('cart')" class="relative flex flex-col items-center text-slate-600 dark:text-slate-400 hover:text-blue-600">
+      <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+      <span class="text-[10px] font-medium mt-0.5">Cart</span>
+      <span id="mobile-cart-badge" class="absolute -top-1 right-2 bg-blue-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+    </button>
+  </div>
+
+  <!-- ================= FLOATING REWARDS BUTTON ================= -->
+  <button onclick="navigateTo('rewards')" class="fixed bottom-20 right-5 lg:bottom-8 z-40 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-full p-3.5 shadow-2xl flex items-center gap-2 group transition-all duration-300 hover:scale-105 glow-effect">
+    <i data-lucide="sparkles" class="w-6 h-6 animate-spin-slow"></i>
+    <span class="hidden group-hover:inline font-semibold text-xs pr-1">Play & Save 30%</span>
+  </button>
+
+  <!-- ================= FLOATING CUSTOMIZE THEME BUTTON ================= -->
+  <button onclick="openThemeModal()" class="fixed bottom-36 right-5 lg:bottom-24 z-40 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all">
+    <i data-lucide="palette" class="w-5 h-5 text-blue-600"></i>
+  </button>
+
+  <!-- ================= SEARCH MODAL ================= -->
+  <div id="search-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-start justify-center pt-20 px-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+        <input type="text" id="modal-search-input" placeholder="Search products, brands, models..." 
+               oninput="handleSearch(this.value)"
+               class="w-full bg-transparent text-slate-800 dark:text-white text-base focus:outline-none">
+        <button onclick="closeSearchModal()" class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500">ESC</button>
+      </div>
+      <div id="search-results-container" class="max-h-96 overflow-y-auto p-4 space-y-3">
+        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Popular Suggestions</div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="setSearchQuery('Sony OLED'); closeSearchModal()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600">Sony 4K OLED TV</button>
+          <button onclick="setSearchQuery('iPhone 15'); closeSearchModal()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600">iPhone 15 Pro</button>
+          <button onclick="setSearchQuery('Samsung Refrigerator'); closeSearchModal()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600">Samsung Double Door</button>
+          <button onclick="setSearchQuery('MacBook Pro'); closeSearchModal()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600">MacBook Pro M3</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= THEME CUSTOMIZER MODAL ================= -->
+  <div id="theme-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl w-full max-w-md border border-slate-200 dark:border-slate-800 p-6 space-y-6">
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-4">
+        <div class="flex items-center gap-2">
+          <i data-lucide="sliders" class="w-5 h-5 text-blue-600"></i>
+          <h3 class="font-heading font-bold text-lg">Theme Customizer</h3>
+        </div>
+        <button onclick="closeThemeModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <!-- Accent Presets -->
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Accent Color Presets</label>
+        <div class="grid grid-cols-5 gap-3">
+          <button onclick="setAccentTheme('#2563eb')" class="h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold ring-2 ring-blue-600 ring-offset-2">Blue</button>
+          <button onclick="setAccentTheme('#7c3aed')" class="h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white font-bold">Purple</button>
+          <button onclick="setAccentTheme('#059669')" class="h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold">Green</button>
+          <button onclick="setAccentTheme('#ea580c')" class="h-10 rounded-xl bg-orange-600 flex items-center justify-center text-white font-bold">Orange</button>
+          <button onclick="setAccentTheme('#dc2626')" class="h-10 rounded-xl bg-red-600 flex items-center justify-center text-white font-bold">Red</button>
+        </div>
+      </div>
+
+      <!-- Appearance Mode -->
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Appearance Mode</label>
+        <div class="grid grid-cols-2 gap-3">
+          <button onclick="setMode('light')" class="py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i> Light Mode
+          </button>
+          <button onclick="setMode('dark')" class="py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800">
+            <i data-lucide="moon" class="w-4 h-4 text-indigo-400"></i> Dark Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Corner Radius -->
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Border Corner Radius</label>
+        <input type="range" min="0" max="1.5" step="0.25" value="0.75" oninput="setRadius(this.value)" class="w-full accent-blue-600">
+      </div>
+
+      <div class="pt-2 flex gap-3">
+        <button onclick="resetTheme()" class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs rounded-xl hover:bg-slate-200 transition">Reset Theme</button>
+        <button onclick="closeThemeModal()" class="flex-1 py-2.5 bg-blue-600 text-white font-semibold text-xs rounded-xl hover:bg-blue-500 transition">Apply Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= QUICK VIEW PRODUCT MODAL ================= -->
+  <div id="quickview-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div id="quickview-content" class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl w-full max-w-3xl border border-slate-200 dark:border-slate-800 overflow-hidden relative">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION SYSTEM ================= -->
+  <div id="toast-container" class="fixed top-24 right-5 z-50 space-y-3 pointer-events-none"></div>
+
+  <!-- ================= JAVASCRIPT APPLICATION CORE ================= -->
+  <script>
+    /* ================= 1. DATA STORE & CATALOG ================= */
+    const PRODUCTS = [
+      {
+        id: 'tv-01',
+        brand: 'Sony Bravia',
+        name: 'XR 55" 4K Ultra HD Smart OLED TV',
+        category: 'tvs',
+        price: 134990,
+        origPrice: 179900,
+        rating: 4.9,
+        reviews: 324,
+        image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=800&q=80',
+        badge: 'Best Seller',
+        specs: { screenSize: '55 Inch', display: 'OLED 4K', refreshRate: '120Hz', sound: '60W Dolby Atmos', hdmi: '4 Ports' },
+        description: 'Experience pure blacks and lifelike brightness with Cognitive Processor XR. Perfect for modern gaming and home theatre enthusiast.'
+      },
+      {
+        id: 'mob-01',
+        brand: 'Apple',
+        name: 'iPhone 15 Pro Max (256GB, Natural Titanium)',
+        category: 'mobiles',
+        price: 148900,
+        origPrice: 159900,
+        rating: 4.9,
+        reviews: 852,
+        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80',
+        badge: 'Top Flagship',
+        specs: { storage: '256 GB', ram: '8 GB', processor: 'A17 Pro Bionic', camera: '48MP Triple Lens', battery: '4422 mAh' },
+        description: 'Forged in titanium with revolutionary A17 Pro chip, customizable Action button, and the most powerful iPhone camera system ever.'
+      },
+      {
+        id: 'laptop-01',
+        brand: 'ASUS ROG',
+        name: 'Strix G16 Gaming Laptop (16" QHD+ 240Hz, RTX 4070)',
+        category: 'laptops',
+        price: 169990,
+        origPrice: 204900,
+        rating: 4.8,
+        reviews: 194,
+        image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=800&q=80',
+        badge: 'Pro Gaming',
+        specs: { processor: 'Intel i9-13980HX', ram: '32 GB DDR5', storage: '1TB Gen4 SSD', gpu: 'NVIDIA RTX 4070 8GB' },
+        description: 'Dominate esports with high frame rates, Tri-Fan technology cooling, and Nebula Display 240Hz refresh panel.'
+      },
+      {
+        id: 'fridge-01',
+        brand: 'Samsung',
+        name: '653L French Door Smart Refrigerator with Family Hub',
+        category: 'refrigerators',
+        price: 112990,
+        origPrice: 145000,
+        rating: 4.7,
+        reviews: 118,
+        image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=800&q=80',
+        badge: '5 Star Energy',
+        specs: { capacity: '653 Litres', energyRating: '5 Star', compressor: 'Digital Inverter', features: 'Family Hub Screen, Convertible' },
+        description: 'Keep food fresh 2x longer with Twin Cooling Plus technology and manage family schedules on the built-in Smart Touch screen.'
+      },
+      {
+        id: 'ac-01',
+        brand: 'Daikin',
+        name: '1.5 Ton 5 Star Inverter Split AC (3D Airflow, PM 2.5 Filter)',
+        category: 'ac',
+        price: 45990,
+        origPrice: 58400,
+        rating: 4.8,
+        reviews: 412,
+        image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80',
+        badge: 'Eco Saver',
+        specs: { capacity: '1.5 Ton', energyRating: '5 Star', condenser: '100% Copper', features: 'Dew Clean Tech, Triple Display' },
+        description: 'Silent and rapid cooling even at extreme 54°C outdoor temperature. Includes PM 2.5 filter for pristine indoor air quality.'
+      },
+      {
+        id: 'audio-01',
+        brand: 'Bose',
+        name: 'QuietComfort Ultra Wireless Headphones (Spatial Audio)',
+        category: 'audio',
+        price: 35900,
+        origPrice: 39900,
+        rating: 4.9,
+        reviews: 230,
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+        badge: 'Best ANC',
+        specs: { battery: '24 Hours', noiseCancelling: 'CustomTune ANC', connectivity: 'Bluetooth 5.3', weight: '254 grams' },
+        description: 'World-class noise cancellation meets breakthrough spatial audio for immersive listening, customized to your ears.'
+      },
+      {
+        id: 'watch-01',
+        brand: 'Samsung',
+        name: 'Galaxy Watch6 Classic LTE (47mm, Rotating Bezel)',
+        category: 'smartwatches',
+        price: 36999,
+        origPrice: 43999,
+        rating: 4.6,
+        reviews: 165,
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
+        badge: 'Fitness Tech',
+        specs: { display: '1.5" Super AMOLED', connectivity: 'LTE + Wi-Fi', sensors: 'ECG, BIA Body Composition', battery: 'Up to 40 Hours' },
+        description: 'Iconic mechanical rotating bezel with advanced sleep tracking, personalized HR zones, and standalone cellular connectivity.'
+      },
+      {
+        id: 'wash-01',
+        brand: 'LG',
+        name: '9Kg 5 Star AI Direct Drive Front Load Washing Machine',
+        category: 'washing_machines',
+        price: 38490,
+        origPrice: 48990,
+        rating: 4.8,
+        reviews: 289,
+        image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80',
+        badge: 'Steam Wash',
+        specs: { capacity: '9.0 Kg', energyRating: '5 Star', motor: 'Inverter Direct Drive', rpm: '1400 RPM' },
+        description: 'AI DD technology detects fabric weight and softness to choose optimal wash motions automatically. 99.9% allergen removal via Steam Cycle.'
+      }
+    ];
+
+    const PUZZLE_QUESTIONS = [
+      {
+        id: 1,
+        question: "What component stores electrical energy in an electrostatic field?",
+        options: ["Resistor", "Capacitor", "Inductor", "Diode"],
+        answer: 1
+      },
+      {
+        id: 2,
+        question: "Which specification directly measures TV screen sharpness?",
+        options: ["Refresh Rate (Hz)", "Resolution (Pixels)", "Audio Output (Watts)", "Aspect Ratio"],
+        answer: 1
+      },
+      {
+        id: 3,
+        question: "Which home appliance typically consumes the highest wattage per hour?",
+        options: ["LED TV", "Air Conditioner", "Laptop Charger", "Smart Speaker"],
+        answer: 1
+      },
+      {
+        id: 4,
+        question: "What does OLED stand for in display technology?",
+        options: ["Organic Light Emitting Diode", "Optical Light Energy Display", "Operational Low Emission Diode", "Overclocked Liquid Crystal Display"],
+        answer: 0
+      }
+    ];
+
+    /* ================= 2. STATE MANAGEMENT ================= */
+    let cart = JSON.parse(localStorage.getItem('ep_cart') || '[]');
+    let wishlist = JSON.parse(localStorage.getItem('ep_wishlist') || '[]');
+    let compareList = JSON.parse(localStorage.getItem('ep_compare') || '[]');
+    let activeCategoryFilter = 'all';
+    let activeSearchQuery = '';
+    let unlockedCoupons = JSON.parse(localStorage.getItem('ep_coupons') || '[]');
+    
+    // Quiz state
+    let quizAnswers = {};
+    
+    // Tech Challenge Timer State
+    let puzzleTimer = null;
+    let puzzleSecondsLeft = 30;
+    let currentPuzzleIndex = 0;
+
+    /* ================= 3. ROUTER & NAVIGATION ================= */
+    function navigateTo(page, param = null) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const container = document.getElementById('app-content');
+      
+      switch(page) {
+        case 'home':
+          container.innerHTML = renderHomePage();
+          initHomePageInteractions();
+          break;
+        case 'shop':
+          if (param) activeCategoryFilter = param;
+          container.innerHTML = renderShopPage();
+          initShopInteractions();
+          break;
+        case 'product':
+          container.innerHTML = renderProductDetailPage(param);
+          break;
+        case 'cart':
+          container.innerHTML = renderCartPage();
+          break;
+        case 'checkout':
+          container.innerHTML = renderCheckoutPage();
+          break;
+        case 'compare':
+          container.innerHTML = renderComparePage();
+          break;
+        case 'offers':
+          container.innerHTML = renderOffersPage();
+          break;
+        case 'rewards':
+          container.innerHTML = renderRewardsPage();
+          initWheelCanvas();
+          break;
+        case 'tracking':
+          container.innerHTML = renderTrackingPage();
+          break;
+        case 'about':
+          container.innerHTML = renderAboutPage();
+          break;
+        case 'contact':
+          container.innerHTML = renderContactPage();
+          break;
+        case 'warranty':
+          container.innerHTML = renderWarrantyPage();
+          break;
+        case 'wishlist':
+          container.innerHTML = renderWishlistPage();
+          break;
+        default:
+          container.innerHTML = renderHomePage();
+      }
+      lucide.createIcons();
+      updateHeaderBadges();
+    }
+
+    /* ================= 4. HEADER BADGES & TOASTS ================= */
+    function updateHeaderBadges() {
+      const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cart-count').innerText = cartCount;
+      document.getElementById('mobile-cart-badge').innerText = cartCount;
+      
+      const wishBadge = document.getElementById('wishlist-badge');
+      if (wishlist.length > 0) {
+        wishBadge.classList.remove('hidden');
+        wishBadge.innerText = wishlist.length;
+      } else {
+        wishBadge.classList.add('hidden');
+      }
+
+      document.getElementById('compare-badge-count').innerText = compareList.length;
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `glass px-4 py-3 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 text-sm font-semibold flex items-center gap-3 transform transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto`;
+      
+      const icon = type === 'success' ? 'check-circle-2' : 'alert-circle';
+      const color = type === 'success' ? 'text-emerald-500' : 'text-amber-500';
+      
+      toast.innerHTML = `
+        <i data-lucide="${icon}" class="w-5 h-5 ${color}"></i>
+        <span class="text-slate-800 dark:text-white">${message}</span>
+      `;
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', '-translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    /* ================= 5. HOME PAGE RENDERER ================= */
+    function renderHomePage() {
+      return `
+        <!-- HERO SECTION -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-950 pt-10 pb-20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              
+              <!-- Left Column: Copy & Actions -->
+              <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-blue-600"></i> Next-Gen Electronics Festival
+                </div>
+                
+                <h1 class="font-heading text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                  Upgrade Your World <br>
+                  <span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">With Pure Innovation</span>
+                </h1>
+                
+                <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                  Explore flagship 4K OLED Smart TVs, ultra-fast 5G smartphones, smart dual-door refrigerators, and gaming laptops with genuine manufacturer warranty & instant No-Cost EMI options.
+                </p>
+                
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                  <button onclick="navigateTo('shop')" class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-2xl shadow-xl shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+                    Shop Now <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                  </button>
+                  <button onclick="navigateTo('offers')" class="px-8 py-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center gap-2">
+                    Today's Deals <i data-lucide="flame" class="w-5 h-5 text-amber-500"></i>
+                  </button>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-3 gap-4 text-center lg:text-left">
+                  <div>
+                    <div class="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">100% Genuine</div>
+                    <div class="text-xs text-slate-500">Official Brand Warranty</div>
+                  </div>
+                  <div>
+                    <div class="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Express Delivery</div>
+                    <div class="text-xs text-slate-500">Free Shipping over ₹4,999</div>
+                  </div>
+                  <div>
+                    <div class="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Easy EMI</div>
+                    <div class="text-xs text-slate-500">Up to 24 Months Zero Interest</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Interactive Lifestyle Hero Card -->
+              <div class="lg:col-span-5 relative">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-slate-800 bg-white dark:bg-slate-900">
+                  <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1000&q=80" 
+                       alt="Flagship OLED TV Showroom" class="w-full h-80 sm:h-96 object-cover transform hover:scale-105 transition duration-700">
+                  
+                  <!-- Floating Badge 1 -->
+                  <div class="absolute top-6 left-6 glass p-3.5 rounded-2xl shadow-lg flex items-center gap-3 animate-float border border-white/40">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold"><i data-lucide="tag" class="w-5 h-5"></i></div>
+                    <div>
+                      <div class="text-[10px] text-slate-500 font-bold uppercase">Festival Saver</div>
+                      <div class="text-xs font-extrabold text-slate-900">FLAT 25% OFF</div>
+                    </div>
+                  </div>
+
+                  <!-- Floating Badge 2 -->
+                  <div class="absolute bottom-6 right-6 glass p-3.5 rounded-2xl shadow-lg flex items-center gap-3 animate-float-delayed border border-white/40">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                    <div>
+                      <div class="text-[10px] text-slate-500 font-bold uppercase">Store Warranty</div>
+                      <div class="text-xs font-extrabold text-slate-900">3 Years Protection</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- LIVE DEAL COUNTDOWN SECTION -->
+        <section class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white py-6 border-y border-slate-800">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 text-center sm:text-left">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              </span>
+              <div>
+                <span class="font-heading font-extrabold tracking-wider text-amber-400 uppercase text-xs">Flash Deals Ending Soon</span>
+                <div class="text-base sm:text-lg font-bold">Grab Flagship Electronics at Up to 40% OFF</div>
+              </div>
+            </div>
+
+            <!-- Countdown Timer Units -->
+            <div id="flash-countdown" class="flex items-center gap-2 font-mono font-bold text-lg sm:text-xl">
+              <div class="bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700"><span id="cd-hours">05</span><span class="text-[10px] block text-slate-400 font-sans font-normal text-center">HRS</span></div> :
+              <div class="bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700"><span id="cd-mins">42</span><span class="text-[10px] block text-slate-400 font-sans font-normal text-center">MIN</span></div> :
+              <div class="bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700"><span id="cd-secs">19</span><span class="text-[10px] block text-slate-400 font-sans font-normal text-center">SEC</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORIES SECTION -->
+        <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+            <div>
+              <span class="text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest">Explore Showroom</span>
+              <h2 class="font-heading text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Shop By Categories</h2>
+            </div>
+            <button onclick="navigateTo('shop')" class="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+              View All Categories <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+            ${renderCategoryCard('Smart TVs', 'tvs', '140+ Items', 'tv', 'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=400&q=80')}
+            ${renderCategoryCard('Mobiles', 'mobiles', '210+ Items', 'smartphone', 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80')}
+            ${renderCategoryCard('Laptops', 'laptops', '95+ Items', 'laptop', 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=400&q=80')}
+            ${renderCategoryCard('Refrigerators', 'refrigerators', '80+ Items', 'refrigerator', 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=400&q=80')}
+            ${renderCategoryCard('Air Conditioners', 'ac', '65+ Items', 'wind', 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=400&q=80')}
+            ${renderCategoryCard('Audio & ANC', 'audio', '180+ Items', 'headphones', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80')}
+          </div>
+        </section>
+
+        <!-- TRENDING ELECTRONICS SECTION -->
+        <section class="py-12 bg-slate-100/60 dark:bg-slate-900/40">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-8">
+              <div>
+                <span class="text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest">Handpicked Models</span>
+                <h2 class="font-heading text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Trending Electronics</h2>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              ${PRODUCTS.slice(0, 4).map(p => renderProductCard(p)).join('')}
+            </div>
+          </div>
+        </section>
+
+        <!-- INTERACTIVE QUIZ PROMO BANNER -->
+        <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-4 max-w-xl z-10">
+              <span class="bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">AI Electronics Assistant</span>
+              <h2 class="font-heading text-3xl sm:text-4xl font-extrabold">Confused Which Model To Buy?</h2>
+              <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+                Answer 3 quick questions about your room size, budget, and daily usage. Our smart recommender will find your ideal electronics match!
+              </p>
+              <button onclick="openQuizModal()" class="px-7 py-3.5 bg-white text-blue-700 font-bold rounded-xl shadow-lg hover:bg-blue-50 transition transform hover:-translate-y-0.5 inline-flex items-center gap-2">
+                Start 30-Second Quiz <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <div class="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center p-6 text-center transform rotate-3">
+              <i data-lucide="cpu" class="w-24 h-24 text-blue-200 animate-pulse"></i>
+            </div>
+          </div>
+        </section>
+
+        <!-- POPULAR BRANDS SHOWROOM -->
+        <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="text-center text-xs font-semibold text-slate-400 uppercase tracking-widest mb-8">Authorized Brand Showroom Partners</div>
+          <div class="flex flex-wrap items-center justify-around gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+            <span class="font-heading font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white">SONY</span>
+            <span class="font-heading font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white">SAMSUNG</span>
+            <span class="font-heading font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white">APPLE</span>
+            <span class="font-heading font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white">LG Electronics</span>
+            <span class="font-heading font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white">BOSE</span>
+            <span class="font-heading font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white">DAIKIN</span>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCategoryCard(title, catKey, count, iconName, bgImg) {
+      return `
+        <div onclick="navigateTo('shop', '${catKey}')" class="group relative rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center transform hover:-translate-y-1">
+          <div class="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <i data-lucide="${iconName}" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-heading font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 transition">${title}</h3>
+          <span class="text-[11px] text-slate-400 font-medium mt-0.5">${count}</span>
+        </div>
+      `;
+    }
+
+    function renderProductCard(product) {
+      const discount = Math.round(((product.origPrice - product.price) / product.origPrice) * 100);
+      const isWish = wishlist.some(i => i.id === product.id);
+      const isComp = compareList.some(i => i.id === product.id);
+
+      return `
+        <div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative">
+          
+          <!-- Discount Badge -->
+          <div class="absolute top-3 left-3 z-10 flex flex-col gap-1">
+            <span class="bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-sm">${discount}% OFF</span>
+            ${product.badge ? `<span class="bg-slate-900/80 text-white text-[9px] font-bold px-2 py-0.5 rounded-md backdrop-blur-sm">${product.badge}</span>` : ''}
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <button onclick="toggleWishlist('${product.id}')" class="w-8 h-8 rounded-full bg-white/90 dark:bg-slate-800/90 shadow-md flex items-center justify-center text-slate-600 hover:text-rose-500 transition">
+              <i data-lucide="heart" class="w-4 h-4 ${isWish ? 'fill-rose-500 text-rose-500' : ''}"></i>
+            </button>
+            <button onclick="toggleCompare('${product.id}')" class="w-8 h-8 rounded-full bg-white/90 dark:bg-slate-800/90 shadow-md flex items-center justify-center text-slate-600 hover:text-blue-600 transition">
+              <i data-lucide="layers" class="w-4 h-4 ${isComp ? 'text-blue-600' : ''}"></i>
+            </button>
+          </div>
+
+          <!-- Product Image -->
+          <div class="relative h-48 sm:h-52 overflow-hidden bg-slate-100 dark:bg-slate-800/50 cursor-pointer" onclick="navigateTo('product', '${product.id}')">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <button onclick="event.stopPropagation(); openQuickView('${product.id}')" class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition duration-200 hover:bg-blue-600 hover:text-white">
+              Quick View
+            </button>
+          </div>
+
+          <!-- Content Details -->
+          <div class="p-4 flex-grow flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">${product.brand}</div>
+              <h3 onclick="navigateTo('product', '${product.id}')" class="font-heading font-bold text-slate-900 dark:text-white text-sm line-clamp-2 hover:text-blue-600 cursor-pointer leading-snug">
+                ${product.name}
+              </h3>
+
+              <!-- Ratings -->
+              <div class="flex items-center gap-1.5 mt-2">
+                <div class="flex text-amber-400">
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                </div>
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">${product.rating}</span>
+                <span class="text-[11px] text-slate-400">(${product.reviews})</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-baseline gap-2">
+                <span class="text-base font-extrabold text-slate-900 dark:text-white">₹${product.price.toLocaleString('en-IN')}</span>
+                <span class="text-xs text-slate-400 line-through">₹${product.origPrice.toLocaleString('en-IN')}</span>
+              </div>
+              <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">EMI starting from ₹${Math.round(product.price / 12).toLocaleString('en-IN')}/mo</div>
+
+              <!-- Add to Cart Button -->
+              <button onclick="addToCart('${product.id}')" class="w-full mt-3 py-2 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-600 text-blue-600 dark:text-blue-400 hover:text-white font-semibold text-xs rounded-xl transition duration-200 flex items-center justify-center gap-2">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+
+        </div>
+      `;
+    }
+
+    /* ================= 6. SHOP & FILTERS PAGE ================= */
+    function renderShopPage() {
+      let filtered = PRODUCTS;
+      if (activeCategoryFilter !== 'all') {
+        filtered = filtered.filter(p => p.category === activeCategoryFilter);
+      }
+      if (activeSearchQuery.trim() !== '') {
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(activeSearchQuery.toLowerCase()) || p.brand.toLowerCase().includes(activeSearchQuery.toLowerCase()));
+      }
+
+      return `
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div class="flex items-center gap-2 text-xs text-slate-400 mb-6">
+            <a href="#" onclick="navigateTo('home'); return false;">Home</a> / <span class="text-slate-700 dark:text-slate-200 font-medium">Showroom Shop</span>
+          </div>
+
+          <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Filters Sidebar -->
+            <div class="w-full lg:w-64 space-y-6 flex-shrink-0">
+              <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-heading font-bold text-base">Filter Products</h3>
+                  <button onclick="activeCategoryFilter='all'; navigateTo('shop')" class="text-xs text-blue-600 hover:underline font-semibold">Reset</button>
+                </div>
+
+                <!-- Categories List -->
+                <div class="space-y-2 mb-6">
+                  <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Category</label>
+                  ${['all', 'tvs', 'mobiles', 'laptops', 'refrigerators', 'ac', 'audio', 'smartwatches'].map(cat => `
+                    <button onclick="activeCategoryFilter='${cat}'; navigateTo('shop')" class="w-full text-left text-xs font-semibold py-1.5 px-3 rounded-xl transition flex justify-between items-center ${activeCategoryFilter === cat ? 'bg-blue-600 text-white' : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300'}">
+                      <span>${cat.toUpperCase()}</span>
+                    </button>
+                  `).join('')}
+                </div>
+
+                <!-- Sort By -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Sort By</label>
+                  <select onchange="sortProducts(this.value)" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs rounded-xl p-2.5">
+                    <option value="pop">Popularity</option>
+                    <option value="low">Price: Low to High</option>
+                    <option value="high">Price: High to Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="flex-1">
+              <div class="flex justify-between items-center mb-6">
+                <span class="text-sm font-semibold text-slate-500">Showing ${filtered.length} products</span>
+              </div>
+
+              ${filtered.length === 0 ? `
+                <div class="text-center py-20 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
+                  <i data-lucide="package-open" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
+                  <h3 class="font-heading font-bold text-lg">No Products Found</h3>
+                  <p class="text-slate-400 text-sm mt-1">Try clearing filters or searching for another model.</p>
+                </div>
+              ` : `
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  ${filtered.map(p => renderProductCard(p)).join('')}
+                </div>
+              `}
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    function sortProducts(criteria) {
+      if (criteria === 'low') PRODUCTS.sort((a,b) => a.price - b.price);
+      if (criteria === 'high') PRODUCTS.sort((a,b) => b.price - a.price);
+      if (criteria === 'pop') PRODUCTS.sort((a,b) => b.reviews - a.reviews);
+      navigateTo('shop');
+    }
+
+    /* ================= 7. PRODUCT DETAIL PAGE ================= */
+    function renderProductDetailPage(productId) {
+      const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+      const discount = Math.round(((product.origPrice - product.price) / product.origPrice) * 100);
+
+      return `
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- Product Gallery (Left) -->
+            <div class="lg:col-span-6 space-y-4">
+              <div class="rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 shadow-md">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-96 sm:h-[450px] object-cover">
+              </div>
+            </div>
+
+            <!-- Product Specs & Buying (Right) -->
+            <div class="lg:col-span-6 space-y-6">
+              <div>
+                <span class="text-xs font-extrabold text-blue-600 dark:text-blue-400 uppercase tracking-widest">${product.brand}</span>
+                <h1 class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">${product.name}</h1>
+                
+                <div class="flex items-center gap-3 mt-3">
+                  <div class="flex items-center gap-1 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-bold px-2.5 py-1 rounded-lg">
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> ${product.rating}
+                  </div>
+                  <span class="text-xs text-slate-400">${product.reviews} Customer Reviews</span>
+                  <span class="text-xs text-emerald-600 font-bold">In Stock</span>
+                </div>
+              </div>
+
+              <!-- Pricing Card -->
+              <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-2">
+                <div class="flex items-baseline gap-3">
+                  <span class="text-3xl font-extrabold text-slate-900 dark:text-white">₹${product.price.toLocaleString('en-IN')}</span>
+                  <span class="text-sm text-slate-400 line-through">₹${product.origPrice.toLocaleString('en-IN')}</span>
+                  <span class="text-xs bg-red-600 text-white font-extrabold px-2 py-0.5 rounded-md">${discount}% OFF</span>
+                </div>
+                <p class="text-xs text-slate-500">Inclusive of all taxes. Standard installation included.</p>
+              </div>
+
+              <!-- Key Specs Grid -->
+              <div>
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Key Technical Specs</h4>
+                <div class="grid grid-cols-2 gap-3">
+                  ${Object.entries(product.specs).map(([key, val]) => `
+                    <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+                      <span class="text-slate-400 block capitalize">${key.replace(/([A-Z])/g, ' $1')}</span>
+                      <span class="font-bold text-slate-800 dark:text-white mt-0.5 block">${val}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- CTAs -->
+              <div class="flex gap-4 pt-2">
+                <button onclick="addToCart('${product.id}')" class="flex-1 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-xl shadow-blue-500/25 transition flex items-center justify-center gap-2">
+                  <i data-lucide="shopping-bag" class="w-5 h-5"></i> Add to Cart
+                </button>
+                <button onclick="addToCart('${product.id}'); navigateTo('cart')" class="flex-1 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-2xl shadow-md transition">
+                  Buy Now
+                </button>
+              </div>
+
+              <!-- Trust Badges -->
+              <div class="grid grid-cols-3 gap-3 pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-xs">
+                <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+                  <i data-lucide="shield-check" class="w-5 h-5 text-blue-600 mx-auto mb-1"></i>
+                  <span class="font-bold block">1 Year Brand Warranty</span>
+                </div>
+                <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+                  <i data-lucide="truck" class="w-5 h-5 text-blue-600 mx-auto mb-1"></i>
+                  <span class="font-bold block">Free Showroom Delivery</span>
+                </div>
+                <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+                  <i data-lucide="wrench" class="w-5 h-5 text-blue-600 mx-auto mb-1"></i>
+                  <span class="font-bold block">Free Installation</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    /* ================= 8. CART & CHECKOUT PAGES ================= */
+    function renderCartPage() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const freeShippingThreshold = 50000;
+      const progress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
+      const amountNeeded = Math.max(0, freeShippingThreshold - subtotal);
+
+      return `
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <h1 class="font-heading text-3xl font-extrabold mb-6">Shopping Cart (${cart.length})</h1>
+
+          ${cart.length === 0 ? `
+            <div class="text-center py-20 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
+              <i data-lucide="shopping-cart" class="w-16 h-16 text-slate-300 mx-auto mb-4"></i>
+              <h3 class="font-heading font-bold text-xl">Your Cart is Empty</h3>
+              <p class="text-slate-400 text-sm mt-1 mb-6">Looks like you haven't added any flagship electronics yet.</p>
+              <button onclick="navigateTo('shop')" class="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl shadow-lg">Start Shopping</button>
+            </div>
+          ` : `
+            <!-- Free Shipping Progress -->
+            <div class="mb-8 p-4 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/50 rounded-2xl space-y-2">
+              <div class="flex justify-between text-xs font-bold text-blue-900 dark:text-blue-200">
+                <span>${amountNeeded > 0 ? `Add ₹${amountNeeded.toLocaleString('en-IN')} more for FREE Express Shipping!` : '🎉 You unlocked FREE Express Shipping!'}</span>
+                <span>${Math.round(progress)}%</span>
+              </div>
+              <div class="w-full h-2.5 bg-blue-200 dark:bg-blue-900 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 transition-all duration-500" style="width: ${progress}%"></div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              
+              <!-- Cart Items List -->
+              <div class="lg:col-span-8 space-y-4">
+                ${cart.map(item => `
+                  <div class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl flex items-center gap-4">
+                    <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-xl bg-slate-100">
+                    <div class="flex-1">
+                      <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white line-clamp-1">${item.name}</h4>
+                      <div class="text-xs text-slate-400 mt-0.5">${item.brand}</div>
+                      <div class="font-extrabold text-sm text-slate-900 dark:text-white mt-1">₹${item.price.toLocaleString('en-IN')}</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <button onclick="updateCartQty('${item.id}', -1)" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold">-</button>
+                      <span class="text-sm font-bold w-6 text-center">${item.qty}</span>
+                      <button onclick="updateCartQty('${item.id}', 1)" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold">+</button>
+                    </div>
+                    <button onclick="removeFromCart('${item.id}')" class="text-slate-400 hover:text-rose-500 p-2"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- Order Summary -->
+              <div class="lg:col-span-4 space-y-4">
+                <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-4 shadow-sm">
+                  <h3 class="font-heading font-bold text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Order Summary</h3>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-500">Subtotal</span>
+                    <span class="font-bold">₹${subtotal.toLocaleString('en-IN')}</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-500">Delivery Charges</span>
+                    <span class="text-emerald-600 font-bold">${amountNeeded === 0 ? 'FREE' : '₹499'}</span>
+                  </div>
+                  <div class="border-t border-slate-100 dark:border-slate-800 pt-3 flex justify-between text-base font-extrabold">
+                    <span>Total Amount</span>
+                    <span class="text-blue-600">₹${(subtotal + (amountNeeded === 0 ? 0 : 499)).toLocaleString('en-IN')}</span>
+                  </div>
+
+                  <button onclick="navigateTo('checkout')" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl shadow-lg transition">
+                    Proceed to Checkout
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    function addToCart(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      const existing = cart.find(i => i.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      localStorage.setItem('ep_cart', JSON.stringify(cart));
+      updateHeaderBadges();
+      showToast(`Added "${product.name.substring(0, 20)}..." to cart!`);
+    }
+
+    function updateCartQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(i => i.id !== productId);
+        }
+      }
+      localStorage.setItem('ep_cart', JSON.stringify(cart));
+      navigateTo('cart');
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      localStorage.setItem('ep_cart', JSON.stringify(cart));
+      navigateTo('cart');
+    }
+
+    function renderCheckoutPage() {
+      return `
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+          <h1 class="font-heading text-3xl font-extrabold">Showroom Express Checkout</h1>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
+            <h3 class="font-heading font-bold text-lg">1. Delivery Address</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input type="text" placeholder="Full Name" class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl text-xs">
+              <input type="text" placeholder="Phone Number" class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl text-xs">
+              <input type="text" placeholder="Pincode / Zip" class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl text-xs">
+              <input type="text" placeholder="City & State" class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl text-xs">
+            </div>
+
+            <h3 class="font-heading font-bold text-lg pt-4 border-t border-slate-100 dark:border-slate-800">2. Payment Method</h3>
+            <div class="space-y-3">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-blue-500 bg-blue-50/30 cursor-pointer">
+                <input type="radio" name="pay" checked class="accent-blue-600">
+                <span class="text-xs font-bold">UPI / Credit Card / Debit Card (Instant 5% Cashback)</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+                <input type="radio" name="pay" class="accent-blue-600">
+                <span class="text-xs font-bold">Zero-Cost EMI (Bajaj Finserv / Credit Cards)</span>
+              </label>
+            </div>
+
+            <button onclick="cart=[]; localStorage.setItem('ep_cart', '[]'); showToast('Order Placed Successfully! Order ID: #EP-9942'); navigateTo('tracking');" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-2xl shadow-xl transition">
+              Place Demo Order (₹0 Demo Mode)
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ================= 9. GAMES & REWARDS SECTION ================= */
+    function renderRewardsPage() {
+      return `
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+          <div class="text-center max-w-2xl mx-auto space-y-3">
+            <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Play & Unlock Discounts</span>
+            <h1 class="font-heading text-4xl font-extrabold text-slate-900 dark:text-white">Interactive Tech Rewards Arena</h1>
+            <p class="text-slate-500 text-sm">Complete our 30-second electronics quiz or test your luck on the Spin Wheel to win up to 30% OFF discount coupons!</p>
+          </div>
+
+          <!-- GAME 1: TECH CHALLENGE PUZZLE -->
+          <div id="tech-puzzle-card" class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-indigo-900/50 relative overflow-hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/10 pb-6 mb-6">
+              <div>
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest flex items-center gap-1.5"><i data-lucide="zap" class="w-4 h-4"></i> Game 1: Tech Challenge</span>
+                <h2 class="font-heading text-2xl sm:text-3xl font-extrabold mt-1">Solve The Electronics Puzzle</h2>
+              </div>
+              
+              <!-- Countdown Circle -->
+              <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20">
+                <i data-lucide="timer" class="w-5 h-5 text-amber-400 animate-pulse"></i>
+                <span id="puzzle-timer-display" class="font-mono font-extrabold text-xl text-amber-400">30s</span>
+              </div>
+            </div>
+
+            <!-- Puzzle Content Area -->
+            <div id="puzzle-body" class="space-y-6">
+              <div class="text-center py-8 space-y-4">
+                <p class="text-slate-300 text-sm sm:text-base max-w-lg mx-auto">Click START to generate a 30-second electronics question. Get it right within time to win coupon code <span class="text-amber-300 font-bold">TECH10</span>!</p>
+                <button onclick="startPuzzleGame()" class="px-8 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm rounded-xl shadow-lg transition transform hover:scale-105">
+                  START 30s CHALLENGE
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME 2: SPIN THE WHEEL -->
+          <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-5 space-y-4 text-center lg:text-left">
+              <span class="text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest flex items-center gap-1 justify-center lg:justify-start"><i data-lucide="disc" class="w-4 h-4"></i> Game 2: Spin & Win</span>
+              <h2 class="font-heading text-3xl font-extrabold text-slate-900 dark:text-white">Spin The Wheel</h2>
+              <p class="text-slate-500 text-sm leading-relaxed">Give the wheel a spin to unlock guaranteed store coupons ranging from 5% to 30% OFF on your next electronics purchase.</p>
+              
+              <button onclick="spinWheel()" id="spin-btn" class="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm rounded-xl shadow-lg transition transform hover:scale-105">
+                SPIN WHEEL NOW
+              </button>
+            </div>
+
+            <!-- Wheel Canvas -->
+            <div class="lg:col-span-7 flex flex-col items-center justify-center relative">
+              <div class="relative w-72 h-72 sm:w-80 sm:h-80">
+                <!-- Pointer -->
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20 w-0 h-0 border-l-[14px] border-l-transparent border-r-[14px] border-r-transparent border-t-[24px] border-t-red-600 drop-shadow-md"></div>
+                <canvas id="wheel-canvas" width="320" height="320" class="w-full h-full rounded-full border-4 border-slate-800 shadow-2xl"></canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      `;
+    }
+
+    function startPuzzleGame() {
+      puzzleSecondsLeft = 30;
+      currentPuzzleIndex = Math.floor(Math.random() * PUZZLE_QUESTIONS.length);
+      const q = PUZZLE_QUESTIONS[currentPuzzleIndex];
+
+      if (puzzleTimer) clearInterval(puzzleTimer);
+      puzzleTimer = setInterval(() => {
+        puzzleSecondsLeft--;
+        const timerEl = document.getElementById('puzzle-timer-display');
+        if (timerEl) timerEl.innerText = `${puzzleSecondsLeft}s`;
+
+        if (puzzleSecondsLeft <= 0) {
+          clearInterval(puzzleTimer);
+          document.getElementById('puzzle-body').innerHTML = `
+            <div class="text-center py-8 space-y-3">
+              <div class="text-rose-400 font-extrabold text-xl">⏳ Time Expired!</div>
+              <p class="text-slate-300 text-sm">Don't worry, try again!</p>
+              <button onclick="startPuzzleGame()" class="px-6 py-2.5 bg-white/20 hover:bg-white/30 text-white font-bold text-xs rounded-xl">Retry Puzzle</button>
+            </div>
+          `;
+        }
+      }, 1000);
+
+      document.getElementById('puzzle-body').innerHTML = `
+        <div class="space-y-4 max-w-xl mx-auto">
+          <h3 class="font-heading font-bold text-lg text-amber-300">${q.question}</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            ${q.options.map((opt, idx) => `
+              <button onclick="submitPuzzleAnswer(${idx})" class="p-3 bg-white/10 hover:bg-amber-500 hover:text-slate-950 rounded-xl text-left text-xs font-bold transition">
+                ${opt}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function submitPuzzleAnswer(selectedIdx) {
+      clearInterval(puzzleTimer);
+      const q = PUZZLE_QUESTIONS[currentPuzzleIndex];
+      const isCorrect = selectedIdx === q.answer;
+
+      if (isCorrect) {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        document.getElementById('puzzle-body').innerHTML = `
+          <div class="text-center py-6 space-y-4">
+            <div class="text-amber-400 font-extrabold text-2xl">🎉 Congratulations! You Solved It!</div>
+            <p class="text-slate-200 text-sm">You unlocked your 10% OFF Store Discount coupon:</p>
+            <div class="inline-flex items-center gap-3 bg-amber-400 text-slate-950 font-mono font-extrabold px-5 py-2.5 rounded-xl text-lg shadow-lg">
+              <span>TECH10</span>
+              <button onclick="navigator.clipboard.writeText('TECH10'); showToast('Coupon TECH10 copied!')" class="text-xs bg-slate-950 text-white px-2.5 py-1 rounded-lg">Copy</button>
+            </div>
+          </div>
+        `;
+      } else {
+        document.getElementById('puzzle-body').innerHTML = `
+          <div class="text-center py-6 space-y-3">
+            <div class="text-rose-400 font-extrabold text-xl">❌ Incorrect Answer</div>
+            <p class="text-slate-300 text-xs">Give it another shot to win!</p>
+            <button onclick="startPuzzleGame()" class="px-6 py-2.5 bg-amber-500 text-slate-950 font-bold text-xs rounded-xl">Try Again</button>
+          </div>
+        `;
+      }
+    }
+
+    /* Wheel Canvas Logic */
+    const WHEEL_SLICES = ['5% OFF', '10% OFF', '15% OFF', '20% OFF', '25% OFF', '30% OFF'];
+    const WHEEL_COLORS = ['#2563eb', '#7c3aed', '#059669', '#ea580c', '#dc2626', '#4f46e5'];
+
+    function initWheelCanvas() {
+      const canvas = document.getElementById('wheel-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const numSlices = WHEEL_SLICES.length;
+      const sliceAngle = (2 * Math.PI) / numSlices;
+
+      ctx.clearRect(0,0,320,320);
+      for (let i = 0; i < numSlices; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = WHEEL_COLORS[i];
+        ctx.moveTo(160, 160);
+        ctx.arc(160, 160, 150, i * sliceAngle, (i + 1) * sliceAngle);
+        ctx.fill();
+
+        // Label
+        ctx.save();
+        ctx.translate(160, 160);
+        ctx.rotate(i * sliceAngle + sliceAngle / 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 14px Inter';
+        ctx.fillText(WHEEL_SLICES[i], 70, 5);
+        ctx.restore();
+      }
+    }
+
+    function spinWheel() {
+      const btn = document.getElementById('spin-btn');
+      if (btn) btn.disabled = true;
+
+      const randomDegree = Math.floor(3600 + Math.random() * 360);
+      const canvas = document.getElementById('wheel-canvas');
+      if (canvas) {
+        canvas.style.transition = 'transform 4s cubic-bezier(0.15, 0.9, 0.25, 1)';
+        canvas.style.transform = `rotate(${randomDegree}deg)`;
+      }
+
+      setTimeout(() => {
+        confetti({ particleCount: 120, spread: 80 });
+        showToast("🎉 You won 15% OFF! Coupon SPIN15 unlocked!");
+        if (btn) btn.disabled = false;
+      }, 4000);
+    }
+
+    /* ================= 10. OTHER AUXILIARY PAGES ================= */
+    function renderComparePage() {
+      return `
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <h1 class="font-heading text-3xl font-extrabold mb-6">Side-by-Side Electronics Comparison</h1>
+          ${compareList.length === 0 ? `
+            <div class="text-center py-20 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
+              <i data-lucide="layers" class="w-16 h-16 text-slate-300 mx-auto mb-3"></i>
+              <h3 class="font-heading font-bold text-xl">No Products Selected</h3>
+              <p class="text-slate-400 text-sm mt-1">Click the compare icon on any product card to add it here.</p>
+            </div>
+          ` : `
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
+                <thead>
+                  <tr class="border-b border-slate-200 dark:border-slate-800">
+                    <th class="p-4 text-left text-xs font-bold uppercase text-slate-400">Specification</th>
+                    ${compareList.map(p => `
+                      <th class="p-4 text-left w-64">
+                        <img src="${p.image}" class="w-20 h-20 object-cover rounded-xl mb-2">
+                        <div class="font-bold text-sm line-clamp-2">${p.name}</div>
+                        <div class="text-blue-600 font-extrabold text-sm mt-1">₹${p.price.toLocaleString('en-IN')}</div>
+                      </th>
+                    `).join('')}
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-xs font-medium">
+                  <tr>
+                    <td class="p-4 font-bold text-slate-400">Brand</td>
+                    ${compareList.map(p => `<td class="p-4">${p.brand}</td>`).join('')}
+                  </tr>
+                  <tr>
+                    <td class="p-4 font-bold text-slate-400">Rating</td>
+                    ${compareList.map(p => `<td class="p-4">${p.rating} / 5.0</td>`).join('')}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    function toggleCompare(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const idx = compareList.findIndex(x => x.id === id);
+      if (idx > -1) {
+        compareList.splice(idx, 1);
+        showToast("Removed from comparison");
+      } else {
+        if (compareList.length >= 3) {
+          showToast("Max 3 products can be compared at once", "warning");
+          return;
+        }
+        compareList.push(p);
+        showToast("Added to compare list!");
+      }
+      localStorage.setItem('ep_compare', JSON.stringify(compareList));
+      updateHeaderBadges();
+    }
+
+    function toggleWishlist(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const idx = wishlist.findIndex(x => x.id === id);
+      if (idx > -1) {
+        wishlist.splice(idx, 1);
+        showToast("Removed from wishlist");
+      } else {
+        wishlist.push(p);
+        showToast("Saved to wishlist!");
+      }
+      localStorage.setItem('ep_wishlist', JSON.stringify(wishlist));
+      updateHeaderBadges();
+    }
+
+    function renderOffersPage() {
+      return `
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+          <h1 class="font-heading text-3xl font-extrabold">Exclusive Bank & Store Offers</h1>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-6 bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-3xl shadow-lg space-y-3">
+              <span class="bg-white/20 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">HDFC Bank</span>
+              <h3 class="font-heading font-bold text-xl">Flat ₹5,000 Instant Discount</h3>
+              <p class="text-xs text-blue-100">On HDFC Credit Card EMI transactions above ₹50,000.</p>
+            </div>
+            <div class="p-6 bg-gradient-to-br from-purple-600 to-indigo-800 text-white rounded-3xl shadow-lg space-y-3">
+              <span class="bg-white/20 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">ICICI Bank</span>
+              <h3 class="font-heading font-bold text-xl">10% Instant Cashback</h3>
+              <p class="text-xs text-purple-100">On purchase of selected Smart OLED TVs & Double Door Refrigerators.</p>
+            </div>
+            <div class="p-6 bg-gradient-to-br from-emerald-600 to-teal-800 text-white rounded-3xl shadow-lg space-y-3">
+              <span class="bg-white/20 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">Exchange Bonus</span>
+              <h3 class="font-heading font-bold text-xl">Up to ₹12,000 Trade-In</h3>
+              <p class="text-xs text-emerald-100">Exchange your old smartphone or TV for instant showroom value.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTrackingPage() {
+      return `
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+          <h1 class="font-heading text-3xl font-extrabold text-center">Live Order Tracking</h1>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-8 shadow-sm">
+            <div class="flex gap-3">
+              <input type="text" value="#EP-9942" class="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl text-sm font-bold">
+              <button onclick="showToast('Tracking status updated!')" class="px-6 py-3 bg-blue-600 text-white font-bold text-sm rounded-xl">Track</button>
+            </div>
+
+            <!-- Visual Delivery Timeline -->
+            <div class="space-y-6 pt-4">
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs"><i data-lucide="check" class="w-4 h-4"></i></div>
+                <div><div class="font-bold text-sm">Order Placed</div><div class="text-[11px] text-slate-400">Oct 24, 2026 - 10:30 AM</div></div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs"><i data-lucide="check" class="w-4 h-4"></i></div>
+                <div><div class="font-bold text-sm">Order Confirmed & Quality Checked</div><div class="text-[11px] text-slate-400">Oct 24, 2026 - 11:15 AM</div></div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs animate-pulse">3</div>
+                <div><div class="font-bold text-sm text-blue-600">Dispatched from Showroom Warehouse</div><div class="text-[11px] text-slate-400">In Transit - Expected Tomorrow</div></div>
+              </div>
+              <div class="flex items-center gap-4 opacity-40">
+                <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-xs">4</div>
+                <div><div class="font-bold text-sm">Out For Express Delivery</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAboutPage() {
+      return `
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+          <h1 class="font-heading text-4xl font-extrabold text-center">About ElectroPulse Showroom</h1>
+          <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed text-center">
+            Founded with a vision to redefine electronics retail across India, ElectroPulse combines the trust of physical showroom consultations with seamless next-generation digital shopping.
+          </p>
+        </div>
+      `;
+    }
+
+    function renderContactPage() {
+      return `
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+          <h1 class="font-heading text-3xl font-extrabold">Contact Flagship Showroom</h1>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="font-bold text-sm">Customer Helpline</div>
+              <p class="text-slate-500 text-sm">+91 1800-425-9900 (Toll Free)</p>
+              <div class="font-bold text-sm">Store Email</div>
+              <p class="text-slate-500 text-sm">support@electropulse.in</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderWarrantyPage() {
+      return `
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-6">
+          <h1 class="font-heading text-3xl font-extrabold">Warranty & Installation Policy</h1>
+          <p class="text-slate-500 text-sm leading-relaxed">All products sold at ElectroPulse are covered by official manufacturer brand warranties. Standard free installation for TVs, ACs and Washing Machines is completed within 24 hours of delivery.</p>
+        </div>
+      `;
+    }
+
+    function renderWishlistPage() {
+      return `
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-6">
+          <h1 class="font-heading text-3xl font-extrabold">Saved Wishlist (${wishlist.length})</h1>
+          ${wishlist.length === 0 ? `<p class="text-slate-400 text-sm">Your wishlist is currently empty.</p>` : `
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              ${wishlist.map(p => renderProductCard(p)).join('')}
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    /* ================= 11. MODALS & INTERACTIVE QUIZ ================= */
+    function openSearchModal() { document.getElementById('search-modal').classList.remove('hidden'); }
+    function closeSearchModal() { document.getElementById('search-modal').classList.add('hidden'); }
+    function openThemeModal() { document.getElementById('theme-modal').classList.remove('hidden'); }
+    function closeThemeModal() { document.getElementById('theme-modal').classList.add('hidden'); }
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+    function openQuickView(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('quickview-content').innerHTML = `
+        <div class="p-6 space-y-4">
+          <button onclick="closeQuickView()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-6 h-6"></i></button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <img src="${p.image}" class="w-full h-64 object-cover rounded-2xl">
+            <div>
+              <h3 class="font-heading font-bold text-xl">${p.name}</h3>
+              <div class="text-2xl font-extrabold text-blue-600 mt-2">₹${p.price.toLocaleString('en-IN')}</div>
+              <p class="text-xs text-slate-500 mt-3">${p.description}</p>
+              <button onclick="addToCart('${p.id}'); closeQuickView()" class="w-full mt-6 py-3 bg-blue-600 text-white font-bold text-xs rounded-xl">Add to Shopping Cart</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('quickview-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+    function closeQuickView() { document.getElementById('quickview-modal').classList.add('hidden'); }
+
+    /* Theme Customizer Handlers */
+    function setAccentTheme(color) {
+      document.documentElement.style.setProperty('--accent-color', color);
+      showToast('Accent color updated!');
+    }
+    function setMode(mode) {
+      if (mode === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    }
+    function setRadius(val) {
+      document.documentElement.style.setProperty('--border-radius', val + 'rem');
+    }
+    function resetTheme() {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.setProperty('--accent-color', '#2563eb');
+      showToast('Theme reset to default light mode');
+    }
+
+    /* Live Search Handler */
+    function handleSearch(val) {
+      activeSearchQuery = val;
+      if (val.trim() !== '') {
+        const container = document.getElementById('search-results-container');
+        const matches = PRODUCTS.filter(p => p.name.toLowerCase().includes(val.toLowerCase()) || p.brand.toLowerCase().includes(val.toLowerCase()));
+        
+        if (matches.length > 0) {
+          container.innerHTML = matches.map(m => `
+            <div onclick="navigateTo('product', '${m.id}'); closeSearchModal()" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
+              <img src="${m.image}" class="w-10 h-10 object-cover rounded-lg">
+              <div>
+                <div class="font-bold text-xs text-slate-900 dark:text-white">${m.name}</div>
+                <div class="text-[10px] text-blue-600 font-bold">₹${m.price.toLocaleString('en-IN')}</div>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+    }
+    function setSearchQuery(val) {
+      activeSearchQuery = val;
+      navigateTo('shop');
+    }
+
+    /* Countdown Timer Loop */
+    function initFlashCountdown() {
+      setInterval(() => {
+        const h = document.getElementById('cd-hours');
+        const m = document.getElementById('cd-mins');
+        const s = document.getElementById('cd-secs');
+        if (s) {
+          let sec = parseInt(s.innerText);
+          if (sec > 0) s.innerText = String(sec - 1).padStart(2, '0');
+          else s.innerText = '59';
+        }
+      }, 1000);
+    }
+
+    function initHomePageInteractions() {
+      initFlashCountdown();
+    }
+
+    /* Init Application */
+    window.onload = function() {
+      navigateTo('home');
+    }
+  </script>
+</body>
+</html>
